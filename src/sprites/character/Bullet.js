@@ -12,19 +12,20 @@ export default class Bullet extends Phaser.GameObjects.Sprite {
 
     this.power = 1;
 
-
     this.active = false;
 
     config.scene.physics.world.enable(this);
     config.scene.add.existing(this);
-    this.body.setGravity(0, config.scene.game.config.physics.arcade.gravity.y * -1);
+
+    this.body.setAllowGravity(false);  
     
-    this.speed = 100;
-
-
+    this.shotSpeed = 100;
 
     this.breakTime = 0;
     this.breakTimeMax = 2000;
+
+    this.vx = 0;
+    this.vy = 0;
 
   }
 
@@ -41,18 +42,20 @@ export default class Bullet extends Phaser.GameObjects.Sprite {
 
     if(this.active){
       this.breakTime -= delta;
-      this.body.setVelocityX(this.speed);
+      this.body.setVelocity(this.vx,this.vy);
     }
   }
-  shot(power,x,y,scroll_speed){
+  shot(power,x,y,vx,vy,speed){
 
+    this.shotSpeed = speed ? speed : this.shotSpeed;
 
     this.power = power ? power : this.power;
 
     this.x = x;
     this.y = y;
+    this.vx = vx * this.shotSpeed;
+    this.vy = vy * this.shotSpeed;
 
-    this.speed += scroll_speed;
 
     this.breakTime = this.breakTimeMax;
 

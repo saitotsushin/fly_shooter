@@ -12,7 +12,6 @@ export default class Coin extends Item {
 
   hit(){
 
-    console.log("this.key",this.key)
 
 
     if(this.key === "coin_big"){
