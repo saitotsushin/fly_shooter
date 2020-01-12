@@ -7,7 +7,7 @@ export default class Character extends Phaser.Physics.Arcade.Sprite {
     config.scene.add.existing(this);
 
     /*==============================
-    ダメージアニメーション
+    爆発アニメーション
     ==============================*/       
     this.explodeSprite = new Explode({
       scene: this.scene,
@@ -37,6 +37,7 @@ export default class Character extends Phaser.Physics.Arcade.Sprite {
     this.damageText.body.setAllowGravity(false);  
 
     this.isDamege = false;
+    this.isDamegeAnimation = false;
 
   }
   update(keys, time, delta) {
@@ -45,6 +46,8 @@ export default class Character extends Phaser.Physics.Arcade.Sprite {
     } 
     this.explodeSprite.x = this.x;
     this.explodeSprite.y = this.y;
+    this.damageText.x = this.x;
+    this.damageText.y = this.y;
   }
 
   damage(num){
@@ -61,11 +64,12 @@ export default class Character extends Phaser.Physics.Arcade.Sprite {
 
     /*==============================
     コンボ判定
-    TODO
+    #TODO
     ==============================*/    
     // if(this.type !== "player"){
     //   this.scene.combo.hit();  
     // }
+
     /*==============================
     ダメージ計算
     ==============================*/            
@@ -79,13 +83,15 @@ export default class Character extends Phaser.Physics.Arcade.Sprite {
 
     /*==============================
     ダメージ表示
-    ==============================*/       
+    ==============================*/
     this.damageText.text = damage;
-    this.damageText.x = this.x - this.body.halfWidth;
-    this.damageText.y = this.y - this.height * 1.8;
+    // this.damageText.x = this.x - this.body.halfWidth;
+    this.damageText.y = this.y - this.height * 1.6;
     this.damageText.setVisible(true);
     
-    let setDamageTextY = this.y - this.height * 1.4;
+    let setDamageTextY = this.y - this.height * 1.0;
+
+    this.isDamegeAnimation = true;    
 
     let damageTween = this.scene.tweens.add({
         targets: this.damageText,
@@ -93,9 +99,13 @@ export default class Character extends Phaser.Physics.Arcade.Sprite {
         ease: 'liner',
         duration: 100,
         repeat: 0,
-        completeDelay: 400,
+        completeDelay: 0,
         onComplete: function () {
-          this.damageText.setVisible(false);
+          this.isDamegeAnimation = false;
+          let damageText = this.damageText;
+          setTimeout(function(){
+            damageText.setVisible(false);
+          }, 400);          
         },
         callbackScope: this
     });

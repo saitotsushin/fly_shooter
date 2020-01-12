@@ -27,8 +27,15 @@ export default class Player extends Character{
       defense: 1,
       shotSpeed: 100
     };
-    this.sencerMoveSpeed = 0.15;
-    this.weaponMoveSpeed;
+    /*==============================
+    初期設定
+    ==============================*/
+    this.body.setVelocity(0,0);
+    this.body.setAllowGravity(false);
+    this.setVisible(false);
+    this.setActive(false);
+ 
+    this.weaponMoveSpeed = 0.15;
 
     this.jumpTimer = 0;
     this.jumpCount = 0;
@@ -73,14 +80,18 @@ export default class Player extends Character{
 
     this.keyReleaseCount = 0;
 
+    /*==============================
+    方向の表示
+    ==============================*/       
     this.arrow_line = this.scene.add.graphics({ lineStyle: { width: 1, color: 0xFF0000 } });
     this.arrow_line.lineStyle(2, 0xFFFFFF);
     this.arrow_line_pos = {
       x: 0,
       y: 0
     }
+    this.sencerMoveSpeed = 0.15;
 
-    this.targetGroup = this.scene.add.group(); 
+    this.sencerGroup = this.scene.add.group(); 
 
     for(let i = 0; i< this.searchLevel ; i++){
       let target_zone = this.scene.add.zone(this.x, this.y).setSize(this.searchZoneWidth, this.searchZoneWidth);
@@ -90,7 +101,7 @@ export default class Player extends Character{
       target_zone.body.setAllowGravity(false);
       target_zone.body.debugBodyColor = 0x00ffff;
 
-      this.targetGroup.add(target_zone);
+      this.sencerGroup.add(target_zone);
   
     }
     this.direction = {
@@ -120,19 +131,33 @@ export default class Player extends Character{
 
     /*==============================
     デバッグ START
-    ==============================*/    
+    ------------------------------*/    
     // this.debugText.setText(
     //   [
     //     'isZoneLeft :'+this.scene.brain.isZoneLeft,
     //   ]
     // );
 
-    /*==============================
+    /*------------------------------
     デバッグ END
     ==============================*/
 
+    /*==============================
+    状態の表示
+    ==============================*/    
     this.anims.play("wait", true);
+    this.explodeSprite.x = this.x;
+    this.explodeSprite.y = this.y;
+    this.damageText.x = this.x - this.body.halfWidth;
+    if(!this.isDamegeAnimation){
+      this.damageText.y = this.y - this.height;
+    }
 
+    /*==============================
+    プレイヤーに追従するweaponの衝突判定（今は非表示）
+    #TODO
+    採用するか考える。パワーアップとして採用する？
+    ==============================*/       
     this.scene.physics.overlap(this.weapon,this.scene.enemyGroup,
       function(weapon,enemy){
         if(!enemy.active){
@@ -144,7 +169,6 @@ export default class Player extends Character{
           enemy.explode();
         }
     },null,this);
-
 
 
     
@@ -227,7 +251,7 @@ export default class Player extends Character{
     /*==============================
     攻撃の判定
     ==============================*/    
-    this.scene.physics.overlap(this.targetGroup,this.scene.enemyGroup,
+    this.scene.physics.overlap(this.sencerGroup,this.scene.enemyGroup,
       function(zone,enemy){
         if(!enemy.active){
           return;
@@ -259,11 +283,16 @@ export default class Player extends Character{
 
     },null,this);
 
-    this.targetGroup.children.entries.forEach(
+    this.sencerGroup.children.entries.forEach(
       (zone,index) => {
-        let setIndex = index + 2;
-        zone.x = this.x + Math.cos(this.arrowDegree)*zone.width*setIndex;
-        zone.y = this.y + Math.sin(this.arrowDegree)*zone.width*setIndex;
+        if(this.isSearch && !this.isMove){
+          let setIndex = index + 2;
+          zone.x = this.x + Math.cos(this.arrowDegree)*zone.width*setIndex;
+          zone.y = this.y + Math.sin(this.arrowDegree)*zone.width*setIndex;
+        }else{
+          zone.x = this.x;
+          zone.y = this.y;
+        }
       }
     );
 
@@ -285,6 +314,7 @@ export default class Player extends Character{
     );
   }
   attack(){
+    console.log("attack()")
     if(!this.weaponDegreeDirection){
       return;
     }
@@ -294,6 +324,11 @@ export default class Player extends Character{
     if(this.weaponDegreeDirection === 'right'){
       this.weaponDegree -= this.weaponMoveSpeed;
     }
+    /*==============================
+    プレイヤーに追従するweapon（今は非表示）
+    #TODO
+    採用するか考える。パワーアップとして採用する？
+    ==============================*/    
     // this.weapon.setVisible(true);
     // this.weapon.setActive(true);
     // this.weapon.x = this.x + Math.cos(this.weaponDegree)*this.weaponRadius;
@@ -412,6 +447,13 @@ export default class Player extends Character{
   
     // }
     this.body.setVelocity(0,0);
+  }
+  alive(){
+    if(!this.active){
+      this.body.setAllowGravity(true);
+      this.setVisible(true);
+      this.setActive(true);
+    }
   }
 
 }

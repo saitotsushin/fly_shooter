@@ -141,7 +141,9 @@ class GameScene extends Phaser.Scene {
 
     if(!this.stageActive){
       return;
-    }    
+    }else{
+      this.player.alive();
+    }
     this.player.update(this.keys, time, delta);
     this.enemyGroup.children.entries.forEach(
       (sprite) => {
