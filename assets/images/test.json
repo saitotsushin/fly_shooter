@@ -1,0 +1,230 @@
+{
+	"textures": [
+		{
+			"image": "test.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 114,
+				"h": 89
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "arrow.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 10,
+						"h": 10
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 10,
+						"h": 10
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 10,
+						"h": 10
+					}
+				},
+				{
+					"filename": "bullet.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 10,
+						"h": 10
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 10,
+						"h": 10
+					},
+					"frame": {
+						"x": 13,
+						"y": 1,
+						"w": 10,
+						"h": 10
+					}
+				},
+				{
+					"filename": "coin.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 16,
+						"h": 16
+					},
+					"spriteSourceSize": {
+						"x": 2,
+						"y": 2,
+						"w": 12,
+						"h": 13
+					},
+					"frame": {
+						"x": 25,
+						"y": 1,
+						"w": 12,
+						"h": 13
+					}
+				},
+				{
+					"filename": "coin_big.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 16,
+						"h": 16
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 16,
+						"h": 16
+					},
+					"frame": {
+						"x": 39,
+						"y": 1,
+						"w": 16,
+						"h": 16
+					}
+				},
+				{
+					"filename": "brain.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 16,
+						"h": 16
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 1,
+						"w": 16,
+						"h": 14
+					},
+					"frame": {
+						"x": 57,
+						"y": 1,
+						"w": 16,
+						"h": 14
+					}
+				},
+				{
+					"filename": "heart.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 32,
+						"h": 16
+					},
+					"spriteSourceSize": {
+						"x": 3,
+						"y": 2,
+						"w": 27,
+						"h": 12
+					},
+					"frame": {
+						"x": 75,
+						"y": 1,
+						"w": 27,
+						"h": 12
+					}
+				},
+				{
+					"filename": "bad.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 41,
+						"h": 10
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 41,
+						"h": 10
+					},
+					"frame": {
+						"x": 1,
+						"y": 19,
+						"w": 41,
+						"h": 10
+					}
+				},
+				{
+					"filename": "player.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 54,
+						"h": 30
+					},
+					"spriteSourceSize": {
+						"x": 1,
+						"y": 1,
+						"w": 53,
+						"h": 29
+					},
+					"frame": {
+						"x": 44,
+						"y": 19,
+						"w": 53,
+						"h": 29
+					}
+				},
+				{
+					"filename": "button_continue.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 109,
+						"h": 20
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 109,
+						"h": 20
+					},
+					"frame": {
+						"x": 1,
+						"y": 50,
+						"w": 109,
+						"h": 20
+					}
+				},
+				{
+					"filename": "explosion_m.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 112,
+						"h": 16
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 112,
+						"h": 16
+					},
+					"frame": {
+						"x": 1,
+						"y": 72,
+						"w": 112,
+						"h": 16
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "3.0",
+		"smartupdate": "$TexturePacker:SmartUpdate:e6c29295c5753d59f2760e0732fc9fb1:ff749c8b816c8edbb9c4e96f0d345d26:02ab132358d6d8b512e80119463a8329$"
+	}
+}

@@ -43,9 +43,11 @@ class BootScene extends Phaser.Scene {
     });
 
 
+    //start loading
+    this.load.pack('Preload', 'assets/pack.json', 'Preload');
 
-    this.load.image('tiles', 'assets/tilemaps/tile.png');
-    this.load.tilemapTiledJSON('map', 'assets/tilemaps/tilemap.json');
+    // this.load.image('tiles', 'assets/tilemaps/tile.png');
+    // this.load.tilemapTiledJSON('map', 'assets/tilemaps/tilemap.json');
 
     this.load.spritesheet('player', 'assets/images/player.png', { frameWidth: 18, frameHeight: 30 });    
     this.load.image('bullet', 'assets/images/bullet.png');
